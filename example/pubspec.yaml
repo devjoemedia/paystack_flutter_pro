@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_dotenv: ^5.0.2
+  
   paystack_flutter_pro:
     path: ../
 

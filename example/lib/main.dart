@@ -31,19 +31,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final PaystackFlutterPro _paystackFlutterPro = PaystackFlutterPro('sk_test_658b2e7d7ba05b626f6fdf58892f834fb6829941');
 
   void _handlePayment(ctx) {
-    setState(() {
-      _counter+=1;
-      debugPrint(' $_counter');
-    });
-      _paystackFlutterPro.startTransaction( context: ctx, amount: _counter, email: 'customer@mail.com', onSuccess: (){}, onError: (){} );
+      _paystackFlutterPro.startTransaction( context: ctx, amount: 10, email: 'customer@mail.com', onSuccess: (){}, onError: (){} );
   }
 
-  
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,20 +47,24 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
+      TextButton(
+              onPressed: () {_handlePayment(context);},
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0, vertical: 10.0),
+              ),
+              child: const Text(
+                'Pay GHS10',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){_handlePayment(context);},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
